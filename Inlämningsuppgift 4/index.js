@@ -19,7 +19,7 @@ searchForm.addEventListener("submit", function(event) {
 function fetchMovie(movieToSeachFor) {
 
     var apikey = '879e41a8';
-    resultDisplayer.innerHTML = '';
+
     var apiRequest = new XMLHttpRequest();
 
     var omdbAPIUrl = "http://www.omdbapi.com/?i=tt3896198&apikey=" + apikey + "&s="+movieToSeachFor+"&type=movie";
@@ -30,6 +30,7 @@ function fetchMovie(movieToSeachFor) {
         
         console.log(result)
         if(result.Response != "False") {
+            resultDisplayer.innerHTML = '';
             handleResponse(result)
          } else {
             alert("Couldn't find that movie! \nThe error was: "+ result.Error);
