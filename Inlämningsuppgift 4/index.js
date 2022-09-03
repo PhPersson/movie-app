@@ -25,7 +25,6 @@ function fetchMovie(movieToSeachFor) {
     var omdbAPIUrl = "http://www.omdbapi.com/?i=tt3896198&apikey=" + apikey + "&s="+movieToSeachFor+"&type=movie";
 
     apiRequest.addEventListener("load", function() {
-
         var result = JSON.parse(this.responseText);
         
         console.log(result)
