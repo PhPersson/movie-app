@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>React-starter-kit</title>
+        <title>Inlämningsuppgift 5</title>
         <meta charset="utf-8">
         <script src="js/react.min.js"></script>
         <script src="js/react-dom.min.js"></script>
@@ -21,8 +21,22 @@
             // Ta en titt i webbkonsollen på den data vi har att tillgå 
             console.log(teams);
 
-            // Placera din JavaScript här
-            // ...
+
+            var Team = React.createClass({
+                    render: function() {
+         return (
+            <div className="teams">
+                <h2>{this.props.teams.name}</h2>
+                <a href={this.props.teams.href}>Teams website</a>
+                <br />
+                <img src={this.props.teams.image.url} alt="" />
+                <br />
+                <button onClick={this.props.onClick} type="button">Remove</button>
+            </div>
+        )
+    }
+});
+            
         </script>
     </body>
 </html>
