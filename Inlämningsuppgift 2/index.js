@@ -1,6 +1,6 @@
+"use strict"
 // Philip Persson al4570
 
-"use strict"
 
 //Uppgift 1
 function max(a, b) {
