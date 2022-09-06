@@ -1,16 +1,18 @@
 import React from 'react'
 
 
-  const TeamRows = ({ team, deleteTeam }) => {
+  const TeamRows = ({ team, deleteTeam, editTeam}) => {
     return (
     <tr>
-      <td>{team.teamName}</td>
+      <td className='teamName'>{team.teamName}</td>
       <td>{team.pos}</td>
       <td>{team.stadium}</td>
 
 
-      <button type="button" onClick={() =>  deleteTeam(team.id)}> Ta bort</button>
+      <button className='deleteButton' type="button" onClick={() =>  deleteTeam(team.id)}> Ta bort</button>
     
+      <button className='updateButton' type="submit" onClick={() =>  editTeam(team.id)}    >Uppdatera</button>
+
     </tr>
     );
   };

@@ -2,14 +2,12 @@ import React from 'react'
 
 
 
-const EditRows =( {
-
-}) => {
+const EditRows =( {editTeam}) => {
 
   return (
     <tr>
         <td>
-            <input
+            <input 
             type = "text"
             required = "required"
             placeholder = "Lagets namn"
@@ -19,7 +17,7 @@ const EditRows =( {
 
 
         <td>
-            <input
+            <input 
             type = "text"
             required = "required"
             placeholder = "Lagets posistion i Serie A"
@@ -27,15 +25,13 @@ const EditRows =( {
             ></input>
         </td>
         <td>
-            <input
+            <input 
             type = "text"
             required = "required"
             placeholder = "Lagets stadium"
             name = "stadium"
             ></input>
         </td>
-        <button type="submit">Uppdatera</button>
-
 
     </tr>
   );

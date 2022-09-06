@@ -36,3 +36,46 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+
+
+
+th {
+  background-color: rgb(255, 238, 217);
+  border: 1px solid #2b1d1d;
+  text-align: left;
+  padding: 8px;
+  font-size: 25px;
+}
+
+.teamName {
+  text-align: center;
+}
+
+.addButton {
+  background-color: #04AA6D;
+  border-radius: 5px 5px;
+  color: white;
+  text-align: center;
+
+}
+
+.updateButton {
+  border-radius: 5px 5px;
+  text-align: center;
+}
+.deleteButton {
+  background-color: red;
+  border-radius: 5px 5px;
+  color: white;
+  text-align: center;
+}
+
+
+
+form {
+  display: flex;
+  gap: 5px;
+}
