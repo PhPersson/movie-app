@@ -1,7 +1,7 @@
+// Philip Persson al4507
 import React from 'react'
 
-
-  const TeamRows = ({ team, deleteTeam, editTeam}) => {
+  const TeamRows = ({ team, deleteTeam, enableEditField}) => {
     return (
     <tr>
       <td className='teamName'>{team.teamName}</td>
@@ -11,9 +11,10 @@ import React from 'react'
 
       <button className='deleteButton' type="button" onClick={() =>  deleteTeam(team.id)}> Ta bort</button>
     
-      <button className='updateButton' type="submit" onClick={() =>  editTeam(team.id)}    >Uppdatera</button>
+      <button className='updateButton' type="submit" onClick={(event) =>  enableEditField(event, team)} >Uppdatera</button>
 
     </tr>
+    
     );
   };
   

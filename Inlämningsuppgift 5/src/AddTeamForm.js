@@ -1,6 +1,6 @@
+// Philip Persson al4570
+
 import React from 'react'
-
-
 
 const AddTeamForm = ({addTeamSubmit, addTeamChangeEventhandle}) => {
   return (

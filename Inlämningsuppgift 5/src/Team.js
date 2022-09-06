@@ -1,3 +1,5 @@
+// Philip Persson al4570
+
 import React, { Fragment, useState } from 'react';
 import './Team.css';
 import { nanoid } from 'nanoid';
@@ -19,11 +21,6 @@ const Team = () => {
     pos: '',
     stadium: '',
   })
-
-
-
-
-
 
 
   // Eventhandlerfunktion för att hantera varje gång knappen för ett lägga till ett nytt lag trycks.
@@ -51,7 +48,7 @@ const Team = () => {
     };
 
     const newTeams = [...teams, newTeam]
-    setTeams(newTeams)
+    setTeams(newTeams);
   };
 
   const deleteTeam = (teamId) => {
@@ -60,45 +57,77 @@ const Team = () => {
 
     const teamIndex = teams.findIndex((team) => team.id === teamId);
   
-    newTeams.splice(teamIndex, 1)
+    newTeams.splice(teamIndex, 1);
 
-    setTeams(newTeams)
+    setTeams(newTeams);
+  };
+
+  const enableEditField = (event, team) => {
+    event.preventDefault();
+    setEditTeamId(team.id);
+
+    const teamValues = {
+      teamName: team.teamName,
+      pos: team.pos,
+      stadium: team.stadium,
+    };
+
+    setEditTeamData(teamValues);
+  };
+  
+
+
+
+  const [editTeamId, setEditTeamId] = useState(null);
+
+  // För att kunna temporärt spara ner datan som temet skall uppdateras med
+  const [editTeamData, setEditTeamData] = useState({
+    teamName: "",
+    pos: "",
+    stadium: "",
+  });
+
+
+  //DÖP OM
+  const handleEditFormChange = (event) => {
+    event.preventDefault();
+    const fieldName = event.target.getAttribute("name");
+    const fieldValue = event.target.value;
+    const newFormData = {...editTeamData};
+    newFormData[fieldName] = fieldValue;
+    setEditTeamData(newFormData);
   };
 
 
 
 
-  const [editTeamData, setEditTeamData] = useState({
-    teamName: '',
-    pos: '',
-    stadium: '',
-  })
-
-  const editTeam = (teamId) => {
-
-  }
 
 
   return (
   <div className = "Team-container">
+    <form>
       <table>
           <thead>
               <DefualtTeamTable/>
           </thead>
           <tbody>
             {teams.map( (team) => (
-              <Fragment>
-
-                  <TeamsRows team={team} deleteTeam = {deleteTeam} editTeam={editTeam}/>
-                  <TeamEditRows/>
-
+              <Fragment> 
+                {editTeamId === team.id ? (
+                  <TeamEditRows editTeamData={editTeamData}/>
+                ) : (
+                  <TeamsRows team={team} enableEditField = {enableEditField} deleteTeam = {deleteTeam}/>
+  
+                )}
                 </Fragment>
+                
             ))}
           </tbody>
       </table>
+      </form>
               {/* För att lägga till ett nytt lag */}
       <AddTeamForm addTeamSubmit = {addTeamSubmit} addTeamChangeEventhandle = {addTeamChangeEventhandle}/> 
-
+      
   </div>
 )};
 

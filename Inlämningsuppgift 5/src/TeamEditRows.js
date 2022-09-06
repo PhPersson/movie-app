@@ -1,8 +1,8 @@
+// Philip Persson al4570
+
 import React from 'react'
 
-
-
-const EditRows =( {editTeam}) => {
+const EditRows =( {team,  editTeamData}) => {
 
   return (
     <tr>
@@ -12,6 +12,7 @@ const EditRows =( {editTeam}) => {
             required = "required"
             placeholder = "Lagets namn"
             name = "teamName"
+            value={editTeamData.teamName}
             ></input>
         </td>
 
@@ -22,6 +23,7 @@ const EditRows =( {editTeam}) => {
             required = "required"
             placeholder = "Lagets posistion i Serie A"
             name = "pos"
+            value={editTeamData.pos}
             ></input>
         </td>
         <td>
@@ -30,6 +32,7 @@ const EditRows =( {editTeam}) => {
             required = "required"
             placeholder = "Lagets stadium"
             name = "stadium"
+            value={editTeamData.stadium}
             ></input>
         </td>
 
