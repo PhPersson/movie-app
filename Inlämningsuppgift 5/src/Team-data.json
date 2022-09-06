@@ -1,0 +1,45 @@
+
+[
+    {   
+        "id" : 1,
+        "pos" : 1,
+        "href" : "https://www.acmilan.com/en",
+        "teamName" : "AC Milan",
+        "stadium" : "San Siro"
+    },
+    {
+        "id" : 12321,
+        "pos" : 2,
+        "href" : "https://www.inter.it/en",
+        "teamName" : "Inter Milan",
+        "stadium" : "San Siro"
+    },
+    {
+        "id" : 321,
+        "pos" : 3,
+        "href" : "https://www.sscnapoli.it/en",
+        "teamName" : "Napoli",
+        "stadium" : "Diego Armando Maradona Stadium"
+    },
+    {
+        "id" : 13234,
+        "pos" : 4,
+        "href" : "https://www.atalanta.it/en",
+        "teamName" : "Atalanta",
+        "stadium" : "Gewiss Stadium"
+    },
+    {
+        "id" : 1532,
+        "pos" : 5,
+        "href" : "https://www.juventus.com/en/",
+        "teamName" : "Juventus",
+        "stadium" : "Juventus Stadium"
+    },
+    {
+        "id" : 176,
+        "pos" : 6,
+        "href" : "https://www.bolognafc.it/en",
+        "teamName" : "Bologna FC",
+        "stadium" : "Renato Dall'Ara Stadium"
+    }
+]
