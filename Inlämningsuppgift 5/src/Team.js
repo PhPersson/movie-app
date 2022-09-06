@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import './App.css';
 import { nanoid } from 'nanoid';
 import teamData from './Team-data.json';
+import TeamsRows from './TeamsRows';
+import TeamEditRows from './TeamEditRows';
 
 
 
@@ -43,7 +45,19 @@ const Team = () => {
 
     const newTeams = [...teams, newTeam]
     setTeams(newTeams)
-  }
+  };
+
+const deleteTeam = (teamId) => {
+  console.log("Ta bort")
+  const newTeams = [...teams]; //Skapar en ny kopa av arrayen
+
+  const teamIndex = teams.findIndex((team) => team.id === teamId);
+  
+  newTeams.splice(teamIndex, 1)
+
+  setTeams(newTeams)
+};
+
 
 
 
@@ -61,11 +75,16 @@ const Team = () => {
           </thead>
           <tbody>
             {teams.map( (team) => (
-              <tr>
-                <td>{team.teamName}</td>
-                <td>{team.pos}</td>
-                <td>{team.stadium}</td>
-              </tr>
+              <Fragment>
+
+
+                  <TeamsRows team={team} deleteTeam = {deleteTeam}
+                  />
+                  <TeamEditRows team = {team} 
+                  
+                  />
+
+                </Fragment>
             ))}
           </tbody>
       </table>
