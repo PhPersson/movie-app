@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-const EditRows =( {team,  editTeamData}) => {
+const EditRows =( {team, handleEditFormChange, editTeamData}) => {
 
   return (
     <tr>
@@ -13,6 +13,7 @@ const EditRows =( {team,  editTeamData}) => {
             placeholder = "Lagets namn"
             name = "teamName"
             value={editTeamData.teamName}
+            onChange={handleEditFormChange}
             ></input>
         </td>
 
@@ -24,6 +25,7 @@ const EditRows =( {team,  editTeamData}) => {
             placeholder = "Lagets posistion i Serie A"
             name = "pos"
             value={editTeamData.pos}
+            onChange={handleEditFormChange}
             ></input>
         </td>
         <td>
@@ -33,7 +35,12 @@ const EditRows =( {team,  editTeamData}) => {
             placeholder = "Lagets stadium"
             name = "stadium"
             value={editTeamData.stadium}
+            onChange={handleEditFormChange}
             ></input>
+        </td>
+
+        <td>
+        <button className='editSaveButton' type="submit">Save</button>
         </td>
 
     </tr>

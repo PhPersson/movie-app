@@ -116,7 +116,7 @@ const Team = () => {
                 {editTeamId === team.id ? (
                   <TeamEditRows editTeamData={editTeamData}/>
                 ) : (
-                  <TeamsRows team={team} enableEditField = {enableEditField} deleteTeam = {deleteTeam}/>
+                  <TeamsRows team={team} enableEditField = {enableEditField} handleEditFormChange={handleEditFormChange} deleteTeam = {deleteTeam}/>
   
                 )}
                 </Fragment>
