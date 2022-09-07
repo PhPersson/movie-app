@@ -5,14 +5,16 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 
 
-const raceScheduleApi = "https://ergast.com/api/f1/current"
+var raceScheduleApi = "https://ergast.com/api/f1/current.json"
 
 function raceTable(props) {
   return (
     <div>
         <table>
           <thead>
-
+            <tr>
+              <td>Race</td>
+            </tr>
           </thead>
         </table>
 
@@ -21,12 +23,18 @@ function raceTable(props) {
   )
 }
     
+async function  fetchF1Api(query) {
+  const response =  await fetch(raceScheduleApi)
+    .then((response) => response.json())
+    .then((data) => console.log(data.MRData.RaceTable.Races))
+  
+}
 
-
+fetchF1Api();
 
 
 ReactDOM.render(
-  <raceTable />,
+  <fetchF1Api />,
 
   document.getElementById("root")
 );
