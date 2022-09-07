@@ -1,5 +1,6 @@
 // Philip Persson al4507
 import React from 'react'
+import '../css/TeamsRow.css';
 
   const TeamRows = ({ team, deleteTeam, enableEditField}) => {
     return (

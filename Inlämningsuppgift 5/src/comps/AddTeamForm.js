@@ -1,7 +1,7 @@
 // Philip Persson al4570
 
 import React from 'react'
-import './AddTeamForm.css';
+import '../css/AddTeamForm.css';
 
 const AddTeamForm = ({addTeamSubmit, addTeamChangeEventhandle}) => {
   return (

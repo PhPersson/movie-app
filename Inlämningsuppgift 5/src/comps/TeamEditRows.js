@@ -1,8 +1,9 @@
 // Philip Persson al4570
 
 import React from 'react'
+import '../css/TeamEditRow.css'
 
-const EditRows =( {team, handleEditFormChange, editTeamData}) => {
+const EditRows =( { handleEditFormChange, editTeamData}) => {
 
   return (
     <tr>

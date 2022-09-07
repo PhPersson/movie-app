@@ -1,13 +1,13 @@
 // Philip Persson al4570
 
 import React, { Fragment, useState } from 'react';
-import './Team.css';
+import './css/Team.css';
 import { nanoid } from 'nanoid';
 import teamData from './Team-data.json';
-import TeamsRows from './TeamsRows';
-import TeamEditRows from './TeamEditRows';
-import AddTeamForm  from './AddTeamForm';
-import DefualtTeamTable from './DefualtTeamTable';
+import TeamsRows from './comps/TeamsRows';
+import TeamEditRows from './comps/TeamEditRows';
+import AddTeamForm  from './comps/AddTeamForm';
+import DefualtTeamTable from './comps/DefualtTeamTable';
 
 
 

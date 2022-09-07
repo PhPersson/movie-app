@@ -1,0 +1,23 @@
+
+.updateButton {
+    border-radius: 5px 5px;
+    text-align: center;
+  }
+  
+.updateButton:hover {
+    box-shadow: inset 100px 0 0 0 #54b3d6;
+    color: white;
+    cursor: pointer;
+}
+  
+.deleteButton {
+    background-color: red;
+    border-radius: 5px 5px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}
+  
+.teamName {
+    text-align: center;
+}  
