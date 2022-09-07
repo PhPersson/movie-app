@@ -51,9 +51,9 @@ const Team = () => {
     setTeams(newTeams);
   };
 
-  const deleteTeam = (teamId) => {
+  function deleteTeam (teamId) {
 
-    const newTeams = [...teams]; //Skapar en kopia av arrayen teams (rad 13)
+    const newTeams = [...teams]; //Skapar en kopia av arrayen teams
 
     const teamIndex = teams.findIndex((team) => team.id === teamId);
   
@@ -105,7 +105,7 @@ const Team = () => {
 
   return (
   <div className = "Team-container">
-    <form>
+    <form className='team-form'>
       <table>
           <thead>
               <DefualtTeamTable/>
@@ -125,9 +125,10 @@ const Team = () => {
           </tbody>
       </table>
       </form>
+      <div className='addDiv' >
               {/* För att lägga till ett nytt lag */}
       <AddTeamForm addTeamSubmit = {addTeamSubmit} addTeamChangeEventhandle = {addTeamChangeEventhandle}/> 
-      
+      </div>
   </div>
 )};
 

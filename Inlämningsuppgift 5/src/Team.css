@@ -1,50 +1,6 @@
 /* Philip Persson al4570 */
 
 
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-
-
-
-
-
 th {
   background-color: rgb(255, 238, 217);
   border: 1px solid #2b1d1d;
@@ -57,14 +13,15 @@ th {
   text-align: center;
 }
 
-.addButton {
+.addBtn {
   border-radius: 5px 5px;
   text-align: center;
 
 }
-.addButton:hover {
+.addBtn:hover {
   box-shadow: inset 100px 0 0 0 #04AA6D;
   color: white;
+  cursor: pointer;
 }
 
 
@@ -76,6 +33,7 @@ th {
 .updateButton:hover {
   box-shadow: inset 100px 0 0 0 #54b3d6;
   color: white;
+  cursor: pointer;
 }
 
 .deleteButton {
@@ -83,6 +41,7 @@ th {
   border-radius: 5px 5px;
   color: white;
   text-align: center;
+  cursor: pointer;
 }
 
 
@@ -94,10 +53,21 @@ th {
 .editSaveButton:hover {
   box-shadow: inset 100px 0 0 0 #04AA6D;
   color: white;
+  cursor: pointer;
 }
 
 
-form {
-  display: flex;
-  gap: 5px;
+.team-form {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  text-align: center;
+}
+
+.addDiv{
+
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
 }
