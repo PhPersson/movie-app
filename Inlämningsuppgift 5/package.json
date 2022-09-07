@@ -1,4 +1,6 @@
 {
+  "start_url": ".",
+  "homepage": ".",
   "name": "inl5",
   "version": "0.1.0",
   "private": true,

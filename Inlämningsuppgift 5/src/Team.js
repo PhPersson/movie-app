@@ -24,20 +24,18 @@ const Team = () => {
 
 
   // Eventhandlerfunktion för att hantera varje gång knappen för ett lägga till ett nytt lag trycks.
-  const addTeamChangeEventhandle = (event) => {
+  function addTeamChangeEventhandle (event)  {
     event.preventDefault();
 
     const field = event.target.getAttribute("name"); //För att hämta name attributen från forms input
-
     const fieldValue = event.target.value;
-
     const newForm = { ...addTeamData};
     newForm[field] = fieldValue;
 
     setAddTeamData(newForm);
   };
 
-  const addTeamSubmit = (event) => {
+  function addTeamSubmit (event) {
     event.preventDefault();
 
     const newTeam = {
@@ -51,6 +49,11 @@ const Team = () => {
     setTeams(newTeams);
   };
 
+  
+
+
+
+
   function deleteTeam (teamId) {
 
     const newTeams = [...teams]; //Skapar en kopia av arrayen teams
@@ -62,40 +65,68 @@ const Team = () => {
     setTeams(newTeams);
   };
 
-  const enableEditField = (event, team) => {
+
+  function handleSaveBtn(event) {
     event.preventDefault();
-    setEditTeamId(team.id);
+
+    const editedTeam = {
+      id : editedTeamData.id,
+      teamName: editedTeamData.teamName,
+      pos: editedTeamData.pos,
+      stadium: editedTeamData.stadium
+    };
+
+    const newTeams = [...teams];
+
+    const index = teams.findIndex((team) => team.id === editedTeamId);
+
+    newTeams[index] = editedTeam;
+
+    setTeams(newTeams);
+    setEditedTeamId(null);
+
+  };
+  
+
+
+  function enableEditField (event, team)  {
+    event.preventDefault();
+    setEditedTeamId(team.id); // För att veta vilket fält med team som skall uppdateras
 
     const teamValues = {
+      id: team.id,
       teamName: team.teamName,
       pos: team.pos,
       stadium: team.stadium,
     };
 
-    setEditTeamData(teamValues);
+    setEditedTeamData(teamValues);
   };
   
 
 
 
-  const [editTeamId, setEditTeamId] = useState(null);
+  const [editedTeamId, setEditedTeamId] = useState(null);
 
   // För att kunna temporärt spara ner datan som temet skall uppdateras med
-  const [editTeamData, setEditTeamData] = useState({
+  const [editedTeamData, setEditedTeamData] = useState({
+    id: "",
     teamName: "",
     pos: "",
     stadium: "",
   });
 
 
-  //DÖP OM
-  const handleEditFormChange = (event) => {
+
+  /// För att ändra om till editfältet
+  function handleEditFormChange (event) {
     event.preventDefault();
     const fieldName = event.target.getAttribute("name");
     const fieldValue = event.target.value;
-    const newFormData = {...editTeamData};
+    const newFormData = {...editedTeamData};
     newFormData[fieldName] = fieldValue;
-    setEditTeamData(newFormData);
+    setEditedTeamData(newFormData);
+
   };
 
 
@@ -105,18 +136,18 @@ const Team = () => {
 
   return (
   <div className = "Team-container">
-    <form className='team-form'>
+    <form className='team-form' onSubmit={handleSaveBtn}>
       <table>
           <thead>
               <DefualtTeamTable/>
           </thead>
           <tbody>
-            {teams.map( (team) => (
+            {teams.map( (team) => ( // Gå igenom team för team. Om det tryckta team.id stämmer överrens så öppna fliken för att kunna redigera teamet. 
               <Fragment> 
-                {editTeamId === team.id ? (
-                  <TeamEditRows editTeamData={editTeamData}/>
+                {editedTeamId === team.id ? (
+                  <TeamEditRows handleEditFormChange={handleEditFormChange} editedTeamData={editedTeamData} />
                 ) : (
-                  <TeamsRows team={team} enableEditField = {enableEditField} handleEditFormChange={handleEditFormChange} deleteTeam = {deleteTeam}/>
+                  <TeamsRows team={team} enableEditField = {enableEditField} deleteTeam = {deleteTeam}/>
   
                 )}
                 </Fragment>

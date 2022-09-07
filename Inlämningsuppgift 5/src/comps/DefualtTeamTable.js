@@ -8,6 +8,7 @@ function DefualtTeamTable() {
     <th>Stadium</th>
     <th>Ta bort / Uppdatera</th>
     </tr>
+
   )
 }
 

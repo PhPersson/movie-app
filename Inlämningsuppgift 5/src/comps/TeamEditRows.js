@@ -3,9 +3,10 @@
 import React from 'react'
 import '../css/TeamEditRow.css'
 
-const EditRows =( { handleEditFormChange, editTeamData}) => {
+const EditRows =( { handleEditFormChange, editedTeamData}) => {
 
   return (
+
     <tr>
         <td>
             <input 
@@ -13,11 +14,10 @@ const EditRows =( { handleEditFormChange, editTeamData}) => {
             required = "required"
             placeholder = "Lagets namn"
             name = "teamName"
-            value={editTeamData.teamName}
+            value={editedTeamData.teamName}
             onChange={handleEditFormChange}
             ></input>
         </td>
-
 
         <td>
             <input 
@@ -25,8 +25,9 @@ const EditRows =( { handleEditFormChange, editTeamData}) => {
             required = "required"
             placeholder = "Lagets posistion i Serie A"
             name = "pos"
-            value={editTeamData.pos}
             onChange={handleEditFormChange}
+            value={editedTeamData.pos}
+
             ></input>
         </td>
         <td>
@@ -35,16 +36,17 @@ const EditRows =( { handleEditFormChange, editTeamData}) => {
             required = "required"
             placeholder = "Lagets stadium"
             name = "stadium"
-            value={editTeamData.stadium}
+            value={editedTeamData.stadium}
             onChange={handleEditFormChange}
             ></input>
         </td>
 
         <td>
-        <button className='editSaveButton' type="submit">Save</button>
+        <button className='editSaveButton' type="submit"  >Save</button>
         </td>
 
     </tr>
+
   );
 
 };

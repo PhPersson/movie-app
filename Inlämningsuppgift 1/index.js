@@ -1,9 +1,8 @@
+"use strict";
 // Philip Persson al4570
 
-"use strict";
 
 // Uppgift 1
-
 console.log(5 * 2 <= 12);
 console.log(55 != 22);
 console.log(16 / 4 == 4);
@@ -77,7 +76,6 @@ if(amount < 50){
 
 
 // Uppgift 10
-
 var char = ''
 
 for (var i = 0; i <= 8; i++) {

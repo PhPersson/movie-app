@@ -8,12 +8,17 @@ button{
     /* border-radius: 0 50px 50px 0 ;  */
     padding: 12px 20px;
     font-size: 17px;  
-
     border-style: solid;
     border-left: 0;
-
     background-color:white;
 }
+
+button:hover{
+  cursor: pointer;
+  background-color: green;
+}
+
+
 
 
 h4 {
@@ -25,19 +30,24 @@ p {
 }
 
 
-.result{
-  border-color: white;
-  border-width: 3px;
+div {
+  display: flex;
+  justify-content: space-between;
 }
 
-.card {
-  border-color: white;
-  border-width: 3px;
+.movieDiv {
+  margin-left: auto;
+  margin-right: auto;
 }
 
-button:hover{
-    background-color: green;
-  }  
+.imgClass{
+  padding: 20px;
+}
+
+.imgClass:hover{
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
 
 form{
     margin: 15px auto;

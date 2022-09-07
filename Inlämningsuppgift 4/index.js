@@ -10,7 +10,7 @@ searchForm.addEventListener("submit", function(event) {
     if (searchText) {
         fetchMovie(searchText);
     } else {
-        alert("U need to enter a title to search for!")
+        alert("U need to enter a title to search for!");
     }
 });
 
@@ -30,7 +30,7 @@ function fetchMovie(movieToSeachFor) {
         console.log(result)
         if(result.Response != "False") {
             resultDisplayer.innerHTML = '';
-            handleResponse(result)
+            handleResponse(result);
          } else {
             alert("Couldn't find that movie! \nThe error was: "+ result.Error);
         }
@@ -42,11 +42,11 @@ function fetchMovie(movieToSeachFor) {
 
 }
 
-
+// Funktion för att gå igenom alla resultat från Apiet. Skapar sedan matchande divar till detta resultat.
 function handleResponse(response) {
     response.Search.map(function(movie) {
             createDiv(movie);
-    })
+    });
 }
 
 
@@ -54,10 +54,10 @@ function handleResponse(response) {
 function createDiv(movie) {
     resultDisplayer.innerHTML += `
     <div id="movieDiv" "class="card">
-                <div class="container">
+                <div">
                 <h4><b>${movie.Title}</b></h4>
                 <p>${movie.Year}</p>
-                <img src="${movie.Poster}">
+                <img class="imgClass" src="${movie.Poster}">
             </div>
-    </div>`
+    </div>`;
 }

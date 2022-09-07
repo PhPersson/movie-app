@@ -2,7 +2,6 @@
 // Philip Persson al4570
 
 //Uppgift 1
-
 var btnError = document.getElementById("error");
 var btnSuccess = document.getElementById("success");
 var btnInfo = document.getElementById("info");
@@ -23,7 +22,6 @@ btnSuccess.addEventListener("click", function (event) {
 
 
 //Uppgift 2
-
 var addBtn = document.getElementById("add-item");
 
 addBtn.addEventListener("click", function(event) {
@@ -36,13 +34,11 @@ addBtn.addEventListener("click", function(event) {
 
 
 // Uppgift 3
-
 var list = document.getElementById("items");
 var btnDelete = document.getElementById("delete-item");
 btnDelete.addEventListener("click", function(event){
     list.removeChild(list.lastElementChild);
-  
-})
+});
 
 
 
@@ -73,19 +69,18 @@ petForm.addEventListener("submit", function(event) {
   var pet = this.pet.value;
 
   console.log("Namn: " + firstName +' '+ lastName + " Ålder: " + age + " Epost: " + email + " Djur: " + pet);
-
+//Del 2
   if (!firstName || !lastName || !email || !age || !pet) {
       alert("All fields must be filled in ");
   } else if (firstName.length > 50) {
-      alert("Firstname can maximum be 50 letters")
+      alert("Firstname can maximum be 50 letters");
   } else if (lastName.length > 50) {
-      alert("Lastname can maximum be 50 letters")
-  } else if(age < 0 || age == undefined)
-      alert("Invalid age")
-    else if(pet == undefined) {
-      alert("No pet choosen")
+      alert("Lastname can maximum be 50 letters");
+  } else if(age < 0 || age == undefined) {
+      alert("Invalid age");
+  } else if(pet == undefined) {
+      alert("No pet choosen");
   } else {
     event.target.submit();
   }
-
-})
+});
