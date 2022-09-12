@@ -13,7 +13,7 @@ import DefualtTeamTable from './comps/DefualtTeamTable';
 
 const Team = () => {
 
-  const [teams, setTeams] = useState(teamData);
+  const [teams, setTeams] = useState(teamData); // Varje gång denna komponent renderas skall State vara teams. Detta gör useState()
 
   const [addTeamData, setAddTeamData] = useState({
     //samma namn som inputs name

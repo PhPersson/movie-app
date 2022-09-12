@@ -15,14 +15,11 @@ searchForm.addEventListener("submit", function(event) {
 });
 
 
-
 function fetchMovie(movieToSeachFor) {
 
     var apikey = '879e41a8';
-
     var apiRequest = new XMLHttpRequest();
-
-    var omdbAPIUrl = "http://www.omdbapi.com/?i=tt3896198&apikey=" + apikey + "&s="+movieToSeachFor+"&type=movie";
+    var omdbAPIUrl = "http://www.omdbapi.com/?i=tt3896198&apikey=" + apikey + "&s=" + movieToSeachFor + "&type=movie";
 
     apiRequest.addEventListener("load", function() {
         var result = JSON.parse(this.responseText);
@@ -38,9 +35,9 @@ function fetchMovie(movieToSeachFor) {
     });
     apiRequest.open("GET", omdbAPIUrl, true);
     apiRequest.send();
-
-
 }
+
+
 
 // Funktion för att gå igenom alla resultat från Apiet. Skapar sedan matchande divar till detta resultat.
 function handleResponse(response) {
