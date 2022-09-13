@@ -1,8 +1,11 @@
 "use strict"
 // Philip Persson al4570
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import Button from 'react-bootstrap/Button';
+
+
 
 const MovieApp = () => {
     
@@ -11,23 +14,37 @@ const MovieApp = () => {
     const [searchQuery, setsearchQuery] = useState('');
 
     const getMoviesFromApi = async (searchMovie) => {
-      var omdbAPIUrl = `https://www.omdbapi.com/?apikey=41059430&type=movie&s=${searchMovie}`
+      setMovies([]); // För att sökninen skall rensa listan med filmer
+      var omdbAPIUrl = `https://www.omdbapi.com/?apikey=41059430&type=movie&s=${searchMovie}` // Hämtar data från omdb APi om filmen som användaren valt att söka på
       var omdbAPIUrlResponse = await (await fetch(omdbAPIUrl)).json();
       
-      setMovies(omdbAPIUrlResponse.Search);
-      console.log(movies)
+      if (handleApiRes(omdbAPIUrlResponse.Search)) {
+        setMovies(omdbAPIUrlResponse.Search);
+      } else {
+        showErrorMessage("Could not find any movies on that search!")
+      }
+    }
+
+    function handleApiRes(apiRes) {
+      if(apiRes !== undefined || null) {
+        return true;
+      } else
+        return false;
     }
 
     const handleSearchButtonClick = (event) => {
       event.preventDefault();
-
-
       if(searchQuery === '') {
         alert("Sökfältet kan inte vara tomt!");
       } else {
-        setMovies(getMoviesFromApi(searchQuery));
+        getMoviesFromApi(searchQuery);
       }
     }
+
+    const showErrorMessage = (message) => {
+      alert(message);
+    }
+
 
     return (
       <><div></div><div>
@@ -39,9 +56,7 @@ const MovieApp = () => {
 
 
 const SearchBar = (probs) => {
-
   return (<div>
-
     <header>
       <form>
       <input
@@ -51,16 +66,11 @@ const SearchBar = (probs) => {
       onChange = {(event) => probs.setsearchQuery(event.target.value)} //Uppdatera MovieApp.setSearchQuery varje gång en bokstav ändras i sökfältet
       ></input>
       <button onClick={probs.handleSearchButtonClick}>Sök!</button>
-
       </form>
     </header>
-
     </div>
-
   );
-
 }
-
 
 const ListOfMovies = (probs) => {
     return (
@@ -78,6 +88,10 @@ const ListOfMovies = (probs) => {
         </>
     )
 }
+
+
+
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
