@@ -1,23 +1,12 @@
 "use strict"
 // Philip Persson al4570
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 const MovieApp = () => {
     
-    const [movies, setMovies] = useState([
-    {
-    "Title":"Batman Begins",
-    "Year":"2005",
-    "Poster":"https://m.media-amazon.com/images/M/MV5BOTY4YjI2N2MtYmFlMC00ZjcyLTg3YjEtMDQyM2ZjYzQ5YWFkXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"
-    },
-    {
-      "Title":"The Batman",
-    "Year":"2022",
-    "Poster":"https://m.media-amazon.com/images/M/MV5BMDdmMTBiNTYtMDIzNi00NGVlLWIzMDYtZTk3MTQ3NGQxZGEwXkEyXkFqcGdeQXVyMzMwOTU5MDk@._V1_SX300.jpg"
-    }
-  ]);
+    const [movies, setMovies] = useState([]);
     
     const [searchQuery, setsearchQuery] = useState('');
 
@@ -31,10 +20,13 @@ const MovieApp = () => {
 
     const handleSearchButtonClick = (event) => {
       event.preventDefault();
+
+
       if(searchQuery === '') {
-        alert("Sökfältet kan inte vara tomt!")
+        alert("Sökfältet kan inte vara tomt!");
+      } else {
+        setMovies(getMoviesFromApi(searchQuery));
       }
-      getMoviesFromApi(searchQuery)
     }
 
     return (
@@ -49,6 +41,9 @@ const MovieApp = () => {
 const SearchBar = (probs) => {
 
   return (<div>
+
+    <header>
+      <form>
       <input
       className='searchBar'
       placeholder="Sök efter en film!"
@@ -56,6 +51,9 @@ const SearchBar = (probs) => {
       onChange = {(event) => probs.setsearchQuery(event.target.value)} //Uppdatera MovieApp.setSearchQuery varje gång en bokstav ändras i sökfältet
       ></input>
       <button onClick={probs.handleSearchButtonClick}>Sök!</button>
+
+      </form>
+    </header>
 
     </div>
 
