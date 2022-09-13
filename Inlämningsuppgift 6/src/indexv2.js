@@ -1,18 +1,30 @@
 "use strict"
 // Philip Persson al4570
 import {useState} from 'react';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+
+ 
 
 
 
-
-
-
-var MovieView = React.createClass({
-  render: function(props) {
+function MovieView(props) {
+    //const titleRef = useRef();
+    
+    
+    
     return(
       <div>
       <h1>Does it stream?</h1>
-      <table className="MovieView">
+      <div>
+          <div>
+            <h4><b>Film</b></h4>
+            <p>År</p>
+            <img src="${movie.Poster}"></img>
+          </div>
+        </div>;
+      {/* <table className="MovieView">
         <thead>
             <tr>
                 {this.props.headers.map((header, index) => {
@@ -29,11 +41,11 @@ var MovieView = React.createClass({
             </tr>)
           })}          
         </tbody>
-        </table>
+        </table> */}
     </div>  
     )
-  }
-})
+}
+
 
 // var Main = React.createClass({
 //   getInitialState: function() {
@@ -87,15 +99,38 @@ var MovieView = React.createClass({
 //    }
 //  })
 
+
 const MainA = () => {
   const [query, setQuery] = useState('');
+  const [movie, setMovies] = useState('');
 
 
-
-  const handleSubmit = event => {
+  async function handleSubmit(event){
     event.preventDefault();
-    console.log(this.query)
+    if (!query) {
+      alert("Searchfield can't be empty!");
+    } else {
+
+      const movieRes = await searchForMovie(query);
+      movieRes.Search.map(function(movie) {
+        setMovies(movie);
+      })
+    }
   }
+
+
+
+
+  async function searchForGiph (query) {
+    var giphyApi = `http://api.giphy.com/v1/gifs/search?q=${query}&api_key=cw40uymBW25iT9nKmJhp1M1TTaPI0EIx&limit=3`;
+    return await fetch (giphyApi).then(response => {return response.json()});
+  }
+
+  async function searchForMovie (query) {
+    var omdbApi = "http://www.omdbapi.com/?apikey=41059430&s="+ query ;
+    return await fetch (omdbApi).then(response => {return response.json()});
+  }
+
 
 
 
@@ -107,69 +142,55 @@ const MainA = () => {
         <input type="text" name="query" id="query" placeholder="Search for a movie" onChange={event => setQuery(event.target.value)} value={query}/>    
         <input type="submit" value="Submit"/>
       </form>   
-    </fieldset>                            
-   </div> 
-      ) 
+    </fieldset>
 
+    <div>
+      <MovieView/>
+    </div>                   
+   </div>
+   
+      ) 
 
 }
 
 
-// var MainApp = React.createClass({
 
 
 
-//   getInitialState: function() {
-    
-//     return {
-//       movie: [],
-//       headers: ["Titel"],
-//       query: '',
-//     };
-//   },  
 
-//   onSearchChange: function(e) {
-//     var query = e.target.value;
-//     this.setState({query : query})
-//     // this.setState({query : query})
-//   },
-
-
-//   onSearchButtonPressed: function (e) {
-//     event.preventDefault();
-//     console.log(event.target.name.value)
-//     var searchText = event.target.value;
-//     // this.setState({searchQuery: searchText})
-//     console.log(searchText)
-//     // if (!searchText) {
-//     //   alert("Searchfield can't be empty!");
-//     // } else {
-//     //   this.searchTheApi
-//     // }
-
-//   },
-
-//   searchTheApi: async function() {
-//       console.log(this.searchForMovie(this.state.searchQuery));
-//   },
+// return(
+//   <div>
+//   <h1>Does it stream?</h1>
+//   <table className="MovieView">
+//     <thead>
+//         <tr>
+//             {this.props.headers.map((header, index) => {
+//               return (<th key={index}>{header}</th>)
+//             })}
+//         </tr>
+//     </thead>
+//     <tbody>
+//       {this.props.apiData.map((item, index) => {
+//         return(<tr key={index}>
+//           <td>{item.name === "" ? item.Title : item.name ? item.name : item.Title}</td>
+//           <td>{item.artist}</td>
+//           <td>{item.Type === "" ? "Music" : item.Type ? item.Type : "Music"}</td>
+//         </tr>)
+//       })}          
+//     </tbody>
+//     </table>
+// </div>  
+// )
 
 
-//   searchForGiph: async function(query) {
-//     var giphyApi = `http://api.giphy.com/v1/gifs/search?q=${query}&api_key=cw40uymBW25iT9nKmJhp1M1TTaPI0EIx&limit=3`;
-//     return fetch (giphyApi).then(response => {return response.json()});
-//   },
 
-//   searchForMovie: async function(query) {
-//     var omdbApi = "http://www.omdbapi.com/?apikey=41059430&s="+ query ;
-//     return fetch (omdbApi).then(response => {return response.json()});
-//   },
-
-//   render: function() {
-
-//   }
-
-// });
 
 
  
- ReactDOM.render(<MainA/>, document.getElementById("root"))
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <MainA />
+  </React.StrictMode>
+);
+
