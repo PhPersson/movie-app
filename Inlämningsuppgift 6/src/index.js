@@ -9,11 +9,7 @@ import ReactDOM from 'react-dom/client';
 
 const MovieApp = () => {
     
-    const [gifPhotos, setGifPhotos] = useState([ {
-      link: "https://giphy.com/embed/l0HlDVrHtCP41pDfW"
-    }
-
-    ])
+    const [gifPhotos, setGifPhotos] = useState([{}])
     
     const [movies, setMovies] = useState([]);
     // const [gifs, setGifs] = useState({});
@@ -24,9 +20,10 @@ const MovieApp = () => {
 
       var omdbAPIUrl = `https://www.omdbapi.com/?apikey=41059430&type=movie&s=${searchMovie}` // Hämtar data från omdb APi om filmen som användaren valt att söka på
       var omdbAPIUrlResponse = await (await fetch(omdbAPIUrl)).json();
-      
+
       if (handleApiRes(omdbAPIUrlResponse.Search)) {
         setMovies(omdbAPIUrlResponse.Search);
+        setGifPhotos([])
       } else {
         showErrorMessage("Could not find any movies on that search!")
       }
@@ -54,7 +51,7 @@ const MovieApp = () => {
     }
 
     const searchForGiph = async (query) => {
-      var giphyApi = `http://api.giphy.com/v1/gifs/search?q=${query}&api_key=cw40uymBW25iT9nKmJhp1M1TTaPI0EIx&limit=1`;
+      var giphyApi = `http://api.giphy.com/v1/gifs/search?q=${query}&api_key=cw40uymBW25iT9nKmJhp1M1TTaPI0EIx&limit=3`;
       var giphyApiResponse = await (await fetch(giphyApi)).json();
 
 
@@ -67,14 +64,12 @@ const MovieApp = () => {
 
     }
 
-    const resetGifs = () => {
-      setGifPhotos([]);
-    }
+
 
     return (
       <>
       <div>
-        <SearchBar resetGifs ={resetGifs} handleSearchButtonClick = {handleSearchButtonClick} setsearchQuery = {setsearchQuery}/>
+        <SearchBar  handleSearchButtonClick = {handleSearchButtonClick} setsearchQuery = {setsearchQuery}/>
         <ListOfMovies  gif={gifPhotos} movies={movies} GIFS = {searchForGiph} />
       </div>
       </>
@@ -82,6 +77,7 @@ const MovieApp = () => {
 }
 
 const SearchBar = (probs) => {
+
   return (<div>
     <header>
       <form>
@@ -92,7 +88,6 @@ const SearchBar = (probs) => {
       onChange = {(event) => probs.setsearchQuery(event.target.value)} //Uppdatera MovieApp.setSearchQuery varje gång en bokstav ändras i sökfältet
       ></input>
       <button  className='searchBtn' onClick = {probs.handleSearchButtonClick}>Sök!</button>
-
       </form>
     </header>
     </div>
@@ -121,12 +116,13 @@ const ListOfMovies = (probs) => {
         <div onClick={() => setIsOpen(false)} />
         <div >
           <div>
-
             <button onClick={() => {setIsOpen(false)} } >
               X
             </button>
               <div>
-                <Iframe src={probs.gif[0].embed_url} />
+              {probs.gif.map((gif, index) => (
+                <Iframe src={gif.embed_url} />
+              ))}
               </div>
             <div >
 
@@ -140,7 +136,6 @@ const ListOfMovies = (probs) => {
 
     return (
         <>
-
         {probs.movies.map((movie, index) => (
             <><div className='ImageCard'>
             <h4><b>{movie.Title}</b></h4>
@@ -152,7 +147,6 @@ const ListOfMovies = (probs) => {
             </div>
           </div>
           </>
-
         ))
         }
         </>
@@ -162,9 +156,7 @@ const ListOfMovies = (probs) => {
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-
     <MovieApp />
-
 );
 
 
