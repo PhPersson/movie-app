@@ -3,16 +3,13 @@
 import {useState} from 'react';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
-
+import './index.css';
 
 
 const MovieApp = () => {
-    
     const [gifPhotos, setGifPhotos] = useState([{}])
     
     const [movies, setMovies] = useState([]);
-    // const [gifs, setGifs] = useState({});
     const [searchQuery, setsearchQuery] = useState('');
 
     const getMoviesFromApi = async (searchMovie) => {
@@ -25,7 +22,7 @@ const MovieApp = () => {
         setMovies(omdbAPIUrlResponse.Search);
         setGifPhotos([])
       } else {
-        showErrorMessage("Could not find any movies on that search!")
+        showErrorMessage("Kunde inte hitta några filmer baserat på den sökningen! \n Testa en annan film!")
       }
     }
 
@@ -69,8 +66,11 @@ const MovieApp = () => {
     return (
       <>
       <div>
+        
         <SearchBar  handleSearchButtonClick = {handleSearchButtonClick} setsearchQuery = {setsearchQuery}/>
+        <InfoText/>
         <ListOfMovies  gif={gifPhotos} movies={movies} GIFS = {searchForGiph} />
+
       </div>
       </>
     )
@@ -80,9 +80,8 @@ const SearchBar = (probs) => {
 
   return (<div>
     <header>
-      <form>
+      <form className='searchBar'>
       <input
-      className='searchBar'
       placeholder="Sök efter en film!"
       value={probs.value}
       onChange = {(event) => probs.setsearchQuery(event.target.value)} //Uppdatera MovieApp.setSearchQuery varje gång en bokstav ändras i sökfältet
@@ -100,7 +99,7 @@ class Iframe extends React.Component {
     
     return(   
       <div>          
-        <iframe src={this.props.src}/>         
+        <iframe className='gitIframe' title='gif-frame' src={this.props.src}/>         
       </div>
     )
   }
@@ -109,17 +108,17 @@ class Iframe extends React.Component {
 const ListOfMovies = (probs) => {  
 
   const [isOpen, setIsOpen] = useState(false);
-  const Modal = ({ setIsOpen }) => {
+  const GifViewer = ({ setIsOpen }) => {
 
     return (
       <>
-        <div onClick={() => setIsOpen(false)} />
-        <div >
+        <div  onClick={() => setIsOpen(false)} />
+        <div className='divGif'>
           <div>
-            <button onClick={() => {setIsOpen(false)} } >
+            <button className="closeGifBtn" onClick={() => {setIsOpen(false)} } >
               X
             </button>
-              <div>
+              <div >
               {probs.gif.map((gif, index) => (
                 <Iframe src={gif.embed_url} />
               ))}
@@ -137,12 +136,12 @@ const ListOfMovies = (probs) => {
     return (
         <>
         {probs.movies.map((movie, index) => (
-            <><div className='ImageCard'>
+            <><div className='imageDiv'>
             <h4><b>{movie.Title}</b></h4>
-            <img src={movie.Poster} alt={movie.Title}></img>
+            <img className='moviePoster' src={movie.Poster} alt={movie.Title}></img>
             <p>Release year: {movie.Year}</p>
-            <button className='gifButton' onClick={() => { setIsOpen(true); probs.GIFS(movie.Title); } }>Generate a gif! </button>
-            {isOpen && <Modal setIsOpen={setIsOpen} />}
+            <button className='gifButton' onClick={() => { setIsOpen(true); probs.GIFS(movie.Title); } }>Generate gifs! </button>
+            {isOpen && <GifViewer setIsOpen={setIsOpen} />}
             <div>
             </div>
           </div>
@@ -154,7 +153,23 @@ const ListOfMovies = (probs) => {
 }
 
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+class InfoText extends React.Component {
+  render() {
+    
+    return(   
+      <div>          
+        <p className='h2Info'>Denna tjänst är till för dig som älskar Gif:s! 
+          <br></br>
+          Sök efter en film och tryck sedan på knappen för att visa lite roliga gifar!
+          </p>
+      </div>
+    )
+  }
+}
+
+
+
+const root = ReactDOM.createRoot(document.getElementById('root'), document.title = "Inlämningsuppgift 6");
 root.render(
     <MovieApp />
 );
