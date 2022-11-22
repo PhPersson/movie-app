@@ -24,7 +24,6 @@ function fetchMovie(movieToSeachFor) {
     apiRequest.addEventListener("load", function() {
         var result = JSON.parse(this.responseText);
         
-        console.log(result)
         if(result.Response != "False") {
             resultDisplayer.innerHTML = '';
             handleResponse(result);

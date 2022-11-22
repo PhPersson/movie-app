@@ -7,16 +7,22 @@ var btnSuccess = document.getElementById("success");
 var btnInfo = document.getElementById("info");
 
 btnError.addEventListener("click", function (event) {
+  document.getElementById("message-box").className = "";
   document.getElementById("message-box").classname = "error";
+  document.getElementById("message-box").classList.add(event.currentTarget.id)
 });
 
 btnInfo.addEventListener("click", function (event) {
+  document.getElementById("message-box").className = "";
   document.getElementById("message-box").classname = "info";
+  document.getElementById("message-box").classList.add(event.currentTarget.id)
 });
 
 
 btnSuccess.addEventListener("click", function (event) {
+  document.getElementById("message-box").className = "";
   document.getElementById("message-box").classname = "success";
+  document.getElementById("message-box").classList.add(event.currentTarget.id)
 });
 
 
@@ -25,9 +31,9 @@ btnSuccess.addEventListener("click", function (event) {
 var addBtn = document.getElementById("add-item");
 
 addBtn.addEventListener("click", function(event) {
-
+  var ItemToAdd = document.createElement("li")
   var li = document.createElement('li');
-  li.appendChild(document.createElement(prompt("Enter item to add to list")));
+  li.appendChild(document.createTextNode(prompt("Enter item to add to list")));
   document.getElementById("items").appendChild(li);
 });
 
