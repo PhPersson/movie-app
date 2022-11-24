@@ -48,9 +48,8 @@ const MovieApp = () => {
     }
 
     const searchForGiph = async (query) => {
-      var giphyApi = `http://api.giphy.com/v1/gifs/search?q=${query}&api_key=cw40uymBW25iT9nKmJhp1M1TTaPI0EIx&limit=3`;
+      var giphyApi = `https://api.giphy.com/v1/gifs/search?q=${query}&api_key=cw40uymBW25iT9nKmJhp1M1TTaPI0EIx&limit=3`;
       var giphyApiResponse = await (await fetch(giphyApi)).json();
-
 
 
       if (handleApiRes(giphyApiResponse.data)) {
@@ -69,7 +68,7 @@ const MovieApp = () => {
         
         <SearchBar  handleSearchButtonClick = {handleSearchButtonClick} setsearchQuery = {setsearchQuery}/>
         <InfoText/>
-        <ListOfMovies  gif={gifPhotos} movies={movies} GIFS = {searchForGiph} />
+        <ListOfMovies  gif={gifPhotos} movies={movies} GIFS = {searchForGiph}/>
 
       </div>
       </>
@@ -120,7 +119,8 @@ const ListOfMovies = (probs) => {
             </button>
               <div >
               {probs.gif.map((gif, index) => (
-                <Iframe src={gif.embed_url} />
+                
+                <Iframe src={gif.embed_url} key={index}/>
               ))}
               </div>
             <div >
@@ -136,7 +136,7 @@ const ListOfMovies = (probs) => {
     return (
         <>
         {probs.movies.map((movie, index) => (
-            <><div className='imageDiv'>
+            <><div className='imageDiv' key={index} >
             <h4><b>{movie.Title}</b></h4>
             <img className='moviePoster' src={movie.Poster} alt={movie.Title}></img>
             <p>Release year: {movie.Year}</p>
