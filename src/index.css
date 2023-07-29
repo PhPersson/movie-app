@@ -28,7 +28,10 @@ code {
   left: 45%;
   top: 5%;
 }
-
+.searchDiv {
+  justify-content: center; 
+  align-items: center;
+}
 
 
 button {
@@ -51,11 +54,7 @@ h4 {
 
 .imageDiv:hover {
   box-shadow:  0px 4px 6px 0px rgba(0,0,0,0.4);
-
-  
 }
-
-
 
 .imageDiv {
   background: #696969;
@@ -68,8 +67,11 @@ h4 {
   top: 40%;
 }
 
-
-
+.h2Info {
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+}
 
 .divGif {
   border: 2px solid whitesmoke;
