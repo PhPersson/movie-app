@@ -152,9 +152,8 @@ class InfoText extends React.Component {
     
     return(   
       <div>          
-        <p className='h2Info'>Denna tjänst är till för dig som älskar Gif:s! 
-          <br/>
-          Sök efter en film och tryck sedan på knappen för att visa lite roliga gifar!
+        <p className='h2Info'>"This service is for those who love GIFs <br/>
+          Search for a movie and then press the button to view some funny GIFs!"
           </p>
       </div>
     )
