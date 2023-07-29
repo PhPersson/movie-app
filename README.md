@@ -4,9 +4,9 @@
 This MovieApp is a simple React application that allows users to search for movies and view associated GIFs related to the searched movie. Users can enter the title of a movie in the search bar, and the app will fetch movie data from the OMDB API and GIF data from the GIPHY API. The application showcases the searched movies along with their release years and movie posters. Users can generate and view GIFs related to each movie by clicking the "Generate GIFs!" button associated with each movie.
 
 ## Technologies Used
-React: The application is built using React, a popular JavaScript library for building user interfaces.
-GIPHY API: The GIPHY API is used to fetch GIFs based on the movie titles.
-OMDB API: The OMDB API is used to fetch movie data based on user search queries.
+* React: The application is built using React, a popular JavaScript library for building user interfaces.
+* GIPHY API: The GIPHY API is used to fetch GIFs based on the movie titles.
+* OMDB API: The OMDB API is used to fetch movie data based on user search queries.
 
 ## How to Use
 Clone the repository or download the project files.
